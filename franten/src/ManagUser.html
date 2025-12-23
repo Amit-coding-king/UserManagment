@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManageUser</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../asset/group.png">
+     <link rel="stylesheet" href="../style/ManageCSS.css">
+</head>
+<body>
+    <main>
+        <h1> <img src="../asset/group.png" alt="group.png">All User</h1>
+        <span class="btnsection"><input type="text" placeholder="Search......." class="searchbox"><span class="addbtn"><img src="../asset/add.png" alt=""></span><button class="btn" onclick="adduser()" type="button">Add</button></span>    
+    </main>
+        <div class="form-section">
+     <form action="">
+         <div class="canclebtn" onclick="cancleform()">
+         <img src="../asset/multiply.png" alt="" class="cancleimg">
+         </div>
+        <label for="">User Name:</label>
+        <input type="text" placeholder="User Name" id="user-input">
+        <label for="">Email:</label>
+        <input type="email" placeholder="Email" id="email-input">
+        <label for="">Password</label>
+        <input type="password" placeholder="Password" id="password-input">
+        <label for="">Role:</label>
+        <select name="" id="role-input">
+            <option value=""></option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+        <button type="submit">Save</button>
+        <button type="">Cancel</button>
+        
+    </form>
+
+ </div>
+<div class="main2">
+
+
+</div>
+    <script src="../script/ManageUsJS.js"></script>
+</body>
+
+</html>
