@@ -39,4 +39,12 @@ app.post('/create-user', async function(req,res){
      res.json({err:err.message,status:'false'})
     }
 })
+app.get('/users', async function(req,res){
+    try{
+      const allUsers=await User.find();
+       res.json({message: 'All user fetch successfully',  users: allUsers, status:'true'})
+    }catch(error){
+          res.json({err:error.message, status:'false'})
+    }
+})
 app.listen(PORT,()=>console.log('server is listing on port 8000'));
