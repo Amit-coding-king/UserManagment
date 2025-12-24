@@ -7,6 +7,13 @@ let nameInput=document.getElementById('user-input');
 let emailInput=document.getElementById('email-input');
 let passwordInput=document.getElementById('password-input');
 let roleInput=document.getElementById('role-input');
+let profileUrl=document.querySelector('.profileUrl');
+// user data section element
+let tduserName=document.querySelector(".td-name")
+let tdemail=document.querySelector(".td-email")
+let tdpassword=document.querySelector(".td-password")
+let tdrole=document.querySelector(".td-role")
+
 
 function adduser(){
     form.style.display="flex";
@@ -23,11 +30,9 @@ form.addEventListener('submit', async function(e){
     const email=emailInput.value
     const password=passwordInput.value
     const role=roleInput.value
+    const url=profileUrl.value
   
-    // const name=nameInput.value
-    // const email=emailInput.value
-    // const password=passwordInput.value
-    // const role=roleInput.value
+    
 
 
     const response = await fetch('http://localhost:8000/create-user',{
@@ -35,7 +40,7 @@ form.addEventListener('submit', async function(e){
         headers:{
             'content-type':'application/json'
         },
-        body:JSON.stringify({name,email,password,role})
+        body:JSON.stringify({name,email,password,role,url})
     })
     const data = await response.json();
     if(data.status ==='false'){
@@ -46,6 +51,7 @@ form.addEventListener('submit', async function(e){
     emailInput.value=""
     passwordInput.value=""
     roleInput.value=""
+    
      cancleform()
 
 })

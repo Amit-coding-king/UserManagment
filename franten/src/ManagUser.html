@@ -14,10 +14,12 @@
         <span class="btnsection"><input type="text" placeholder="Search......." class="searchbox"><span class="addbtn"><img src="../asset/add.png" alt=""></span><button class="btn" onclick="adduser()" type="button">Add</button></span>    
     </main>
         <div class="form-section">
-     <form action="">
+     <form action="" >
          <div class="canclebtn" onclick="cancleform()">
          <img src="../asset/multiply.png" alt="" class="cancleimg">
          </div>
+         <label for="">Profile :</label>
+          <input type="text" id="imageUrl" placeholder="Enter Image URL" required class="profileUrl">
         <label for="">User Name:</label>
         <input type="text" placeholder="User Name" id="user-input">
         <label for="">Email:</label>
@@ -31,14 +33,31 @@
             <option value="user">User</option>
         </select>
         <button type="submit">Save</button>
-        <button type="">Cancel</button>
+        
         
     </form>
 
  </div>
-<div class="main2">
+ <div class="">
+        <table border="4">
+ <thead>
+  <tr>
+    <th>User</th>
+    <th>Password</th>
+    <th>Role</th>
+    <th>Action</th>
+  </tr>
+ </thead>
+ <tbody>  <tr>
+    <td class="user-td"><img src="../asset/images.jpg" alt="profile" class="profile-img"><p class="td-username">Amit kumar </p>,<p class="td-email">Amitku323444@gmail.com</p></td>
+    <td class="td-password">1234</td>
+    <td class="td-role">Admin</td>
+    <td><img src="../asset/pen.png" alt="edit" class="td-action"></td>
+  </tr>
+  </tbody>
 
-
+ 
+</table>
 </div>
     <script src="../script/ManageUsJS.js"></script>
 </body>

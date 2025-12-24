@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     email:String,
     password:String,
     role:String,
+    url:String,//profileUrl
 })
 
 module.exports = mongoose.model('User',userSchema)

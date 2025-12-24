@@ -22,15 +22,16 @@ app.get('/',function(req,res){
 )
 app.post('/create-user', async function(req,res){
     try{
-        const{name,email,password,role}=req.body;
-        if(!name || !email || !password || !role){
+        const{name,email,password,role,url}=req.body;
+        if(!name || !email || !password || !role ||!url){
          return  res.json({err:'All field are required',status:'false'})
         }
         const Nayauser= new User({
              name:name,
              email:email,
              password:password,
-             role:role
+             role:role,
+             url:url
         })
         await Nayauser.save()
         res.json({message: 'user saved successfully',status:'true'})
