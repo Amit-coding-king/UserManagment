@@ -13,14 +13,14 @@ app.use(cors());
 app.use(express.json());
 
 //app.use(express.urlencoded());
-mongoose.connect('mongodb://localhost:27017/UserDashboard')
+mongoose.connect('mongodb://localhost:27017/UserDashboard')//mongodb://localhost:27017=>eske bad koi name dal dete hai
 .then(()=> console.log('connected to db'))
 .catch((error)=> console.log(error.message));
 app.get('/',function(req,res){
     res.send("server is running")
 }
 )
-app.post('/create-user', async function(req,res){
+app.post('/create-user', async function(req,res){//post api creating
     try{
         const{name,email,password,role,url}=req.body;
         if(!name || !email || !password || !role ||!url){

@@ -9,10 +9,11 @@ let passwordInput=document.getElementById('password-input');
 let roleInput=document.getElementById('role-input');
 let profileUrl=document.querySelector('.profileUrl');
 // user data section element
-let tduserName=document.querySelector(".td-name")
-let tdemail=document.querySelector(".td-email")
-let tdpassword=document.querySelector(".td-password")
-let tdrole=document.querySelector(".td-role")
+let tduserName=document.querySelector(".td-name");
+let tdemail=document.querySelector(".td-email");
+let tdpassword=document.querySelector(".td-password");
+let tdrole=document.querySelector(".td-role");
+let UserContainer=document.querySelector(".user-containe");
 
 
 function adduser(){
@@ -51,7 +52,43 @@ form.addEventListener('submit', async function(e){
     emailInput.value=""
     passwordInput.value=""
     roleInput.value=""
+     profileUrl.value=""
     
      cancleform()
+     getAllUser()
 
 })
+
+
+async function getAllUser(){
+    const response = await fetch('http://localhost:8000/users')
+    const data = await response.json()
+    if(data.status === 'false'){
+        return alert(`X ${data.err} X`)
+    }
+   // console.log(data.users)
+  generateHtml(data.users)
+}
+getAllUser()
+
+function generateHtml(arrayofUsers){
+    UserContainer.innerHTML ='';
+    arrayofUsers.forEach(user =>{
+        UserContainer.innerHTML +=`
+         <tr>
+    <td class="user-td">
+        <img src="${user.url}" alt="profile" class="profile-img">
+     <div >
+        <p class="td-username">${user.name} </p>
+        <p class="td-email">${user.email}</p>
+    </div>
+    </td>
+    <td class="td-password">${user.password}</td>
+    <td class="td-role" id="admin"><div>${user.role}</div></td>
+    <td><img src="../asset/delet.png" alt="edit" class="td-action"></td>
+  </tr>
+         
+        `
+
+    })
+}
