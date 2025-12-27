@@ -68,8 +68,29 @@ async function getAllUser(){
     }
    // console.log(data.users)
   generateHtml(data.users)
+ 
 }
-getAllUser()
+
+
+async function deleteUser(id){
+    const response = await fetch(`http://localhost:8000/delete/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json'
+        },
+    })
+    const data = await response.json()
+    if(data.status === 'false'){
+        return alert(`❌ ${data.err} ❌`)
+    }
+    alert(data.message)
+
+    
+//generateHtml(data.users)
+   getAllUser()
+}
+
+
 
 function generateHtml(arrayofUsers){
     UserContainer.innerHTML ='';
@@ -85,10 +106,17 @@ function generateHtml(arrayofUsers){
     </td>
     <td class="td-password">${user.password}</td>
     <td class="td-role" id="admin"><div>${user.role}</div></td>
-    <td><img src="../asset/delet.png" alt="edit" class="td-action"></td>
+    <td  >
+    <img src="../asset/delet.png" alt="edit" class="td-action"  onclick="deleteUser('${user._id}')">
+    <img src="../asset/write.png" alt="edit" class="td-action"  onclick="Edituser()">
+    </td>
   </tr>
          
         `
 
     })
+    
 }
+   getAllUser()    
+         
+    

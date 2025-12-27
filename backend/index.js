@@ -47,4 +47,19 @@ app.get('/users', async function(req,res){
           res.json({err:error.message, status:'false'})
     }
 })
+
+
+app.delete('/delete/:id', async function(req, res) {
+    try {
+        const {id} = req.params;
+        console.log(id)
+        const deletedUser = await User.findByIdAndDelete(id);
+        if(!deletedUser){
+            res.json({err: error.message, status: 'false'})
+        }
+        res.json({message: 'User deleted successfuly', status: 'true'})
+    } catch (error) {
+        res.json({err: error.message, status: 'false'})
+    }
+})
 app.listen(PORT,()=>console.log('server is listing on port 8000'));

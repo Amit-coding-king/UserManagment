@@ -82,6 +82,7 @@ h1 img{
 }
 form{
   background-color: rgb(226, 221, 221);
+  border-radius: 3px 40px 3px;
 }
 
 .user-section{
@@ -126,6 +127,12 @@ table{
 .td-action{
   width: 25px;
   height: 30px;
+  padding: 2px;
+  cursor: pointer;
+}
+.td-action:hover{
+  padding: 5px;
+  
 }
 td{
   text-align: center;
@@ -150,6 +157,27 @@ td{
 
   /* text-align: center; */
 }
+.pop-box{
+  width: 180px;
+  height: 160px;
+  border: 1px solid black;
+  border-radius: 10px;
+  /* display: flex; */
+  /* justify-content: end; */
+  background-color: aquamarine;
+  position: absolute;
+  top: 10px;
+  left: 600px;
+  display: none;
+  
+}
+.popbtn{
+  width: 40px;
+  height: 40px;
+  margin-top: 110px;
+  margin-left: 120px;
+}
+
 /* media query */
 
 @media (max-width: 768px){
