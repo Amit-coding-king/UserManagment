@@ -23,6 +23,9 @@ function cancleform(){
     form.style.display="none"
 }
 
+function navigate(id){
+    window.location.href=`http://localhost:5500/franten/src/Edite.html?userId=${id}`
+}
 
 form.addEventListener('submit', async function(e){
     e.preventDefault()
@@ -108,7 +111,7 @@ function generateHtml(arrayofUsers){
     <td class="td-role" id="admin"><div>${user.role}</div></td>
     <td  >
     <img src="../asset/delet.png" alt="edit" class="td-action"  onclick="deleteUser('${user._id}')">
-    <img src="../asset/write.png" alt="edit" class="td-action"  onclick="Edituser()">
+    <img src="../asset/write.png" alt="edit" class="td-action"  onclick="navigate('${user._id}')">
     </td>
   </tr>
          
