@@ -47,14 +47,14 @@ mongoose
 // app.listen(PORT, () => console.log("Server running"));
 
 // ✅ LAST LINE — EXPORT APP
-module.exports = app;
+//module.exports = app;
 
 
 
 
-//***********dhruv sir****************** */
-// app.get('/',function(req,res){
-//     res.send("server is running");
+//***********dhruv sir**********
+//app.get('/',function(req,res){
+   //  res.send("server is running");
 // });
 app.post('/create-user', async function(req,res){//post api creating
     try{
@@ -132,7 +132,8 @@ app.put('/update/:id', async function(req, res){
         res.json({err: error.message, status: 'false'})
     }
 })
-
-module.exports = app;
+ 
+//** vercel */
+ module.exports = app;
 
 // app.listen(PORT,()=>console.log('server is listing on port 8000'));
