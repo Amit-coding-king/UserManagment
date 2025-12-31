@@ -1,4 +1,10 @@
+export default app;
+
+
+
+
 const express=require('express');
+
 
 const cors=require('cors');
 
@@ -12,11 +18,19 @@ const bcrypt = require('bcrypt');
 const User = require('./models/UserModels');
 app.use(cors());
 app.use(express.json());
+// ********************mongodb connection*******************
 
 //app.use(express.urlencoded());
-mongoose.connect('mongodb://localhost:27017/UserDashboard')//mongodb://localhost:27017=>eske bad koi name dal dete hai
-.then(()=> console.log('connected to db'))
-.catch((error)=> console.log(error.message));
+// mongoose.connect('mongodb://localhost:27017/UserDashboard')//mongodb://localhost:27017=>eske bad koi name dal dete hai
+// .then(()=> console.log('connected to db'))
+// .catch((error)=> console.log(error.message));
+
+// ************vercle connection********************
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.log(err));
+
 
 
 
@@ -101,4 +115,4 @@ app.put('/update/:id', async function(req, res){
     }
 })
 
-app.listen(PORT,()=>console.log('server is listing on port 8000'));
+// app.listen(PORT,()=>console.log('server is listing on port 8000'));
