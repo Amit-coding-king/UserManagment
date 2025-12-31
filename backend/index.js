@@ -1,23 +1,24 @@
 
 
-// const express=require('express');
-// const cors=require('cors')
-// const mongoose=require('mongoose');
-// const app=express();
-// const PORT=8000;
-// const bcrypt = require('bcrypt');
-// const User = require('./models/UserModels');
-// app.use(cors());
-// app.use(express.json());
+const express=require('express');
+const cors=require('cors')
+const mongoose=require('mongoose');
+const app=express();
+const PORT=8000;
+const bcrypt = require('bcrypt');
+const User = require('./models/UserModels');
+app.use(cors());
+app.use(express.json());
 
 // ********************mongodb connection*******************
 
-//app.use(express.urlencoded());
-// mongoose.connect('mongodb://localhost:27017/UserDashboard')//mongodb://localhost:27017=>eske bad koi name dal dete hai
-// .then(()=> console.log('connected to db'))
-// .catch((error)=> console.log(error.message));
+app.use(express.urlencoded());
+mongoose.connect('mongodb://localhost:27017/UserDashboard')//mongodb://localhost:27017=>eske bad koi name dal dete hai
+.then(()=> console.log('connected to db'))
+.catch((error)=> console.log(error.message));
 
-// ************vercle connection********************
+/**
+  // ************vercle connection********************
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -48,14 +49,14 @@ mongoose
 
 // ✅ LAST LINE — EXPORT APP
 //module.exports = app;
-
+**/ 
 
 
 
 //***********dhruv sir**********
-//app.get('/',function(req,res){
-   //  res.send("server is running");
-// });
+app.get('/',function(req,res){
+    res.send("server is running");
+});
 app.post('/create-user', async function(req,res){//post api creating
     try{
         const{name,email,password,role,url}=req.body;
@@ -134,6 +135,6 @@ app.put('/update/:id', async function(req, res){
 })
  
 //** vercel */
- module.exports = app;
+ //module.exports = app;
 
-// app.listen(PORT,()=>console.log('server is listing on port 8000'));
+app.listen(PORT,()=>console.log('server is listing on port 8000'));
