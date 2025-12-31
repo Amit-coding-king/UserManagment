@@ -83,4 +83,22 @@ app.delete('/delete/:id', async function(req, res) {
 })
 
 
+app.put('/update/:id', async function(req, res){
+    try {
+        const {id} = req.params;
+        const {name, email, password} = req.body;
+        const updatedUser = await User.findByIdAndUpdate(id, {
+            name: name,
+            email: email,
+            password: password
+        }, {new: true});
+        if(!updatedUser){
+            res.json({err: 'Cannot able to edit user', status: 'false'})
+        }
+        res.json({message: 'User updated successfuly', status: 'true'})
+    } catch (error) {
+        res.json({err: error.message, status: 'false'})
+    }
+})
+
 app.listen(PORT,()=>console.log('server is listing on port 8000'));
