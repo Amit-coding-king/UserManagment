@@ -1,23 +1,15 @@
-export default app;
 
 
+// const express=require('express');
+// const cors=require('cors')
+// const mongoose=require('mongoose');
+// const app=express();
+// const PORT=8000;
+// const bcrypt = require('bcrypt');
+// const User = require('./models/UserModels');
+// app.use(cors());
+// app.use(express.json());
 
-
-const express=require('express');
-
-
-const cors=require('cors');
-
-const mongoose=require('mongoose');
-
-const app=express();
-
-const PORT=8000;
-const bcrypt = require('bcrypt');
-
-const User = require('./models/UserModels');
-app.use(cors());
-app.use(express.json());
 // ********************mongodb connection*******************
 
 //app.use(express.urlencoded());
@@ -26,18 +18,44 @@ app.use(express.json());
 // .catch((error)=> console.log(error.message));
 
 // ************vercle connection********************
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
+const User = require('./models/UserModels');
+
+const app = express();
+
+// middlewares
+app.use(cors());
+app.use(express.json());
+
+// ✅ ROOT ROUTE (VERY IMPORTANT)
+app.get("/", (req, res) => {
+  res.send("Backend running successfully on Vercel 🚀");
+});
+
+// ✅ MongoDB connect
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
+// ❌ app.listen() MAT LIKHNA (Vercel ke liye)
+// const PORT = 8000;
+// app.listen(PORT, () => console.log("Server running"));
+
+// ✅ LAST LINE — EXPORT APP
+module.exports = app;
 
 
 
-app.get('/',function(req,res){
-    res.send("server is running")
-}
-)
+
+//***********dhruv sir****************** */
+// app.get('/',function(req,res){
+//     res.send("server is running");
+// });
 app.post('/create-user', async function(req,res){//post api creating
     try{
         const{name,email,password,role,url}=req.body;
@@ -114,5 +132,7 @@ app.put('/update/:id', async function(req, res){
         res.json({err: error.message, status: 'false'})
     }
 })
+
+module.exports = app;
 
 // app.listen(PORT,()=>console.log('server is listing on port 8000'));
