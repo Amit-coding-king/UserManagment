@@ -20,7 +20,7 @@ const secret_key='ffvygbh398u*&*bhn';
 // ********************mongodb connection*******************
 
 app.use(express.urlencoded());
-mongoose.connect('mongodb+srv://amit00130399_db_user:<db_password>@cluster0.hci6i9z.mongodb.net/?appName=Cluster0/UserDashboard')//mongodb://localhost:27017=>eske bad koi name dal dete hai
+mongoose.connect('mongodb+srv://amit:amitkumar@cluster0.gaouu2a.mongodb.net/?appName=Cluster0/UserDashboard')//mongodb://localhost:27017=>eske bad koi name dal dete hai
 .then(()=> console.log('connected to db'))
 .catch((error)=> console.log(error.message));
 
