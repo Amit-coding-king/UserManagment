@@ -1,6 +1,6 @@
 const token=localStorage.getItem('token')
 if(token){
-     window.location.href='https://user-managmentdashboard.vercel.app/franten/src/ManagUser.html'
+     window.location.href='https://user-managmentdashboard.vercel.app/src/ManagUser.html'
 }
 
 const emailInput=document.getElementById('email-input');
@@ -27,7 +27,7 @@ form.addEventListener('submit',async function(e){
     }
     alert(data.message)
     localStorage.setItem('token', data.token)
-    window.location.href='https://user-managmentdashboard.vercel.app/franten/src/ManagUser.html'
+    window.location.href='https://user-managmentdashboard.vercel.app/src/ManagUser.html'
     emailInput.value=""
     passwordInput.value=""
 })

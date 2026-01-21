@@ -1,7 +1,7 @@
 const token=localStorage.getItem('token')
 if(!token){
 
-    window.location.href='https://user-managmentdashboard.vercel.app/franten/src/signup.html'
+    window.location.href='https://user-managmentdashboard.vercel.app/src/signup.html'
 }
 let btn=document.querySelector("#btn");
 let form=document.querySelector("form");
@@ -23,7 +23,7 @@ const Logout=document.getElementById('Logout')
 
 const logout=()=>{
     
-    window.location.href='https://user-managmentdashboard.vercel.app/franten/index.html'
+    window.location.href='https://user-managmentdashboard.vercel.app/index.html'
     localStorage.removeItem('token')
 
 }

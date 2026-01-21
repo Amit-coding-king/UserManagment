@@ -8,7 +8,7 @@ const params = new URLSearchParams(window.location.search);
 const value = params.get("userId");
 
   function backtohome(){
-    window.location.href='https://user-managmentdashboard.vercel.app/franten/src/ManagUser.html'
+    window.location.href='https://user-managmentdashboard.vercel.app/src/ManagUser.html'
   }
 
 
@@ -57,7 +57,7 @@ alert(data.message)
 nameInput.value=""
 emailInput.value=""
 passwordInput.value=""
-window.location.href='https://user-managmentdashboard.vercel.app/franten/src/ManagUser.html'
+window.location.href='https://user-managmentdashboard.vercel.app/src/ManagUser.html'
 
 })
 
