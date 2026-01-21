@@ -1,6 +1,6 @@
 const token=localStorage.getItem('token')
 if(token){
-     window.location.href='http://127.0.0.1:5500/franten/src/ManagUser.html'
+     window.location.href='https://user-managmentdashboard.vercel.app/franten/src/ManagUser.html'
 }
 const nameInput=document.getElementById('name-input');
 const emailInput=document.getElementById('email-input');
@@ -18,7 +18,7 @@ form.addEventListener('submit',async function(e){
     
 
 //user fatch
-    const response = await fetch('http://localhost:8000/signup',{
+    const response = await fetch('https://user-managmentdashboardbackend.vercel.app/signup',{
         method:'POST',
         headers:{
             'content-type':'application/json',
@@ -32,7 +32,7 @@ form.addEventListener('submit',async function(e){
     }
     alert(data.message)
     localStorage.setItem('token',data.token)
-    window.location.href='http://127.0.0.1:5500/franten/src/ManagUser.html'
+    window.location.href='https://user-managmentdashboard.vercel.app/franten/src/ManagUser.html'
     nameInput.value=""
     emailInput.value=""
     passwordInput.value=""

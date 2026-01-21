@@ -1,7 +1,7 @@
 const token=localStorage.getItem('token')
 if(!token){
 
-    window.location.href='http://127.0.0.1:5500/franten/src/signup.html'
+    window.location.href='https://user-managmentdashboard.vercel.app/franten/src/signup.html'
 }
 let btn=document.querySelector("#btn");
 let form=document.querySelector("form");
@@ -23,7 +23,7 @@ const Logout=document.getElementById('Logout')
 
 const logout=()=>{
     
-    window.location.href='http://127.0.0.1:5500/franten/index.html'
+    window.location.href='https://user-managmentdashboard.vercel.app/franten/index.html'
     localStorage.removeItem('token')
 
 }
@@ -52,7 +52,7 @@ form.addEventListener('submit', async function(e){
     
 
 //user fatch
-    const response = await fetch('http://localhost:8000/create-user',{
+    const response = await fetch('https://user-managmentdashboardbackend.vercel.app/create-user',{
         method:'POST',
         headers:{
             'content-type':'application/json'
@@ -77,7 +77,7 @@ form.addEventListener('submit', async function(e){
 
 
 async function getAllUser(){
-    const response = await fetch('http://localhost:8000/users')
+    const response = await fetch('https://user-managmentdashboardbackend.vercel.app/users')
     const data = await response.json()
     if(data.status === 'false'){
         return alert(`X ${data.err} X`)
@@ -89,7 +89,7 @@ async function getAllUser(){
 
 
 async function deleteUser(id){
-    const response = await fetch(`http://localhost:8000/delete/${id}`, {
+    const response = await fetch(`https://user-managmentdashboardbackend.vercel.app/delete/${id}`, {
         method: 'DELETE',
         headers: {
             'content-type': 'application/json'

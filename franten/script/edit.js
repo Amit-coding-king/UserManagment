@@ -8,13 +8,13 @@ const params = new URLSearchParams(window.location.search);
 const value = params.get("userId");
 
   function backtohome(){
-    window.location.href='http://127.0.0.1:5500/franten/src/ManagUser.html'
+    window.location.href='https://user-managmentdashboard.vercel.app/franten/src/ManagUser.html'
   }
 
 
 
 async function getUserById(id){
-    const response = await fetch(`http://localhost:8000/user/${id}`);
+    const response = await fetch(`https://user-managmentdashboardbackend.vercel.app/user/${id}`);
     const data = await response.json();
     if(data.status === 'false'){
         return alert(`❌ ${data.err} ❌`)
@@ -38,7 +38,7 @@ form.addEventListener('submit', async function(e){
     const password=passwordInput.value
     
 
-    const response=await fetch(`http://localhost:8000/update/${value}`,{
+    const response=await fetch(`https://user-managmentdashboardbackend.vercel.app/update/${value}`,{
 
      method:'PUT',
      headers:{
@@ -57,7 +57,7 @@ alert(data.message)
 nameInput.value=""
 emailInput.value=""
 passwordInput.value=""
-window.location.href='http://127.0.0.1:5500/franten/src/ManagUser.html'
+window.location.href='https://user-managmentdashboard.vercel.app/franten/src/ManagUser.html'
 
 })
 
