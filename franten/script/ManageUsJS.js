@@ -1,3 +1,8 @@
+const token=localStorage.getItem('token')
+if(!token){
+
+    window.location.href='http://127.0.0.1:5500/franten/src/signup.html'
+}
 let btn=document.querySelector("#btn");
 let form=document.querySelector("form");
 let canclebtn=document.querySelector("#canclebtn")
@@ -14,6 +19,14 @@ let tdemail=document.querySelector(".td-email");
 let tdpassword=document.querySelector(".td-password");
 let tdrole=document.querySelector(".td-role");
 let UserContainer=document.querySelector(".user-containe");
+const Logout=document.getElementById('Logout')
+
+const logout=()=>{
+    
+    window.location.href='http://127.0.0.1:5500/franten/index.html'
+    localStorage.removeItem('token')
+
+}
 
 
 function adduser(){
@@ -38,7 +51,7 @@ form.addEventListener('submit', async function(e){
   
     
 
-
+//user fatch
     const response = await fetch('http://localhost:8000/create-user',{
         method:'POST',
         headers:{

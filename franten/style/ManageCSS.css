@@ -177,7 +177,11 @@ td{
   margin-top: 110px;
   margin-left: 120px;
 }
-
+#Logout{
+  cursor: pointer;
+  color: black;
+  background-color: red;
+}
 /* media query */
 
 @media (max-width: 768px){

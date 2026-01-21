@@ -6,9 +6,16 @@ const mongoose=require('mongoose');
 const app=express();
 const PORT=8000;
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('./models/UserModels');
-app.use(cors());
+app.use(cors({
+    origin: 'http://127.0.0.1:5500',
+    methods:['GET','POST','PUT','PATCH','DELETE'],
+    credentials:true
+}));
 app.use(express.json());
+const secret_key='ffvygbh398u*&*bhn';
+
 
 // ********************mongodb connection*******************
 
@@ -17,39 +24,7 @@ mongoose.connect('mongodb://localhost:27017/UserDashboard')//mongodb://localhost
 .then(()=> console.log('connected to db'))
 .catch((error)=> console.log(error.message));
 
-/**
-  // ************vercle connection********************
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
-const User = require('./models/UserModels');
-
-const app = express();
-
-// middlewares
-app.use(cors());
-app.use(express.json());
-
-// ✅ ROOT ROUTE (VERY IMPORTANT)
-app.get("/", (req, res) => {
-  res.send("Backend running successfully on Vercel 🚀");
-});
-
-// ✅ MongoDB connect
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
-
-// ❌ app.listen() MAT LIKHNA (Vercel ke liye)
-// const PORT = 8000;
-// app.listen(PORT, () => console.log("Server running"));
-
-// ✅ LAST LINE — EXPORT APP
-//module.exports = app;
-**/ 
 
 
 
@@ -57,6 +32,8 @@ mongoose
 app.get('/',function(req,res){
     res.send("server is running");
 });
+
+
 app.post('/create-user', async function(req,res){//post api creating
     try{
         const{name,email,password,role,url}=req.body;
@@ -73,10 +50,13 @@ app.post('/create-user', async function(req,res){//post api creating
         })
         await Nayauser.save()
         res.json({message: 'user saved successfully',status:'true'})
-    }catch(error){
+    }
+    catch(error){
      res.json({err:err.message,status:'false'})
     }
 })
+
+//db se data nikal raha hai
 app.get('/users', async function(req,res){
     try{
       const allUsers=await User.find();
@@ -114,6 +94,51 @@ app.delete('/delete/:id', async function(req, res) {
         res.json({err: error.message, status: 'false'})
     }
 })
+app.post('/signup', async function(req,res){
+try{
+    const{name,email,password}=req.body;
+    if(!name || !email || !password ){
+        return res.json({err:'All field are required',status:'false'})
+    }
+    const hashedPassword= await bcrypt.hash(password,10)
+
+    const nayaUser= new User({
+        name:name,
+        email:email,
+        password:hashedPassword
+    })
+    await nayaUser.save()
+    const token = jwt.sign({id:nayaUser._id},secret_key,{expiresIn: '7d'})
+
+    res.json({message:'signup succsefully', status:'true' ,token})
+
+
+}catch(error){
+    res.json({err: error.message, status:'false'})
+}
+
+})
+
+app.post('/login', async function(req, res){
+    try {
+        const {email, password} = req.body;
+        if(!email || !password){
+            return res.json({err: 'All fields are required', status: 'false'})
+        }
+        const user = await User.findOne({email});
+        if(!user){
+            return res.json({err: 'No user found', status: 'false'})
+        }
+        const isPasswordCorrect = await bcrypt.compare(password, user.password)
+        if(!isPasswordCorrect){
+            return res.json({err: 'Invalid password', status: 'false'})
+        }
+        const token = jwt.sign({id: user._id}, secret_key, {expiresIn: '7d'})
+        res.json({message: 'Login successfully', status: 'true', token})
+    } catch (error) {
+        res.json({err: error.message, status: 'false'})
+    }
+})
 
 
 app.put('/update/:id', async function(req, res){
@@ -126,7 +151,7 @@ app.put('/update/:id', async function(req, res){
             password: password
         }, {new: true});
         if(!updatedUser){
-            res.json({err: 'Cannot able to edit user', status: 'false'})
+            res.json({err: 'Cannot able to edit user', statsu: 'false'})
         }
         res.json({message: 'User updated successfuly', status: 'true'})
     } catch (error) {
